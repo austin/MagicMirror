@@ -158,6 +158,48 @@ if [[ $choice =~ ^[Yy]$ ]]; then
     pm2 save
 fi
 
+# Rotating the screen and hide Rainbow colored cube
+read -p "Do you want to rotate the screen (y/n)?" choice
+if [[ $choice =~ ^[Yy]$ ]]; then
+    sudo cp /boot/config.txt /boot/config.txt.bak
+
+    echo "" | sudo tee -a /boot/config.txt > dev/null
+    echo "display_rotate=1" | sudo tee -a /boot/config.txt > /dev/null
+    echo "avoid_warnings=1" | sudo tee -a /boot/config.txt > /dev/null
+fi
+
+# Rotating the screen and hide Rainbow colored cube
+read -p "Do you want to hide the Rainbow colored cube (y/n)?" choice
+if [[ $choice =~ ^[Yy]$ ]]; then
+    sudo cp /boot/config.txt /boot/config.txt.bak
+
+    echo "" | sudo tee -a /boot/config.txt > dev/null
+    echo "avoid_warnings=1" | sudo tee -a /boot/config.txt > /dev/null
+fi
+
+# Autohiding the Mouse Cursor
+read -p "Do you want to auto hide the mouse cursor (y/n)?" choice
+if [[ $choice =~ ^[Yy]$ ]]; then
+    sudo apt-get install unclutter
+
+    cd ~
+    touch .xinitrc
+    cp .xinitrc .initrc.bak
+
+    echo "unclutter &" | sudo tee -a ~/.xinitrc > /dev/null
+fi
+
+# Prevent screen blanking
+read -p "Do you want to prevent screen blanking (y/n)?" choice
+if [[ $choice =~ ^[Yy]$ ]]; then
+    cp ~/.config/lxsession/LXDE-pi/autostart ~/.config/lxsession/LXDE-pi/autostart.bak
+    echo "@xset s noblank" >> ~/.config/lxsession/LXDE-pi/autostart
+    echo "@xset s off" >> ~/.config/lxsession/LXDE-pi/autostart
+    echo "@xset -dpms" >> ~/.config/lxsession/LXDE-pi/autostart
+fi
+
+
+
 echo " "
 echo -e "\e[92mWe're ready! Run \e[1m\e[97mDISPLAY=:0 npm start\e[0m\e[92m from the ~/MagicMirror directory to start your MagicMirror.\e[0m"
 echo " "
