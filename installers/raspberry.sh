@@ -101,7 +101,7 @@ if [ -d "$HOME/MagicMirror" ] ; then
 fi
 
 echo -e "\e[96mCloning MagicMirror ...\e[90m"
-if git clone https://github.com/MichMich/MagicMirror.git; then 
+if git clone https://github.com/austin/MagicMirror.git; then 
 	echo -e "\e[92mCloning MagicMirror Done!\e[0m"
 else
 	echo -e "\e[91mUnable to clone MagicMirror."
@@ -152,7 +152,8 @@ fi
 read -p "Do you want use pm2 for auto starting of your MagicMirror (y/n)?" choice
 if [[ $choice =~ ^[Yy]$ ]]; then
     sudo npm install -g pm2
-    sudo su -c "env PATH=$PATH:/usr/bin pm2 startup linux -u pi --hp /home/pi"
+    #sudo su -c "env PATH=$PATH:/usr/bin pm2 startup linux -u pi --hp /home/pi"
+    sudo su -c "env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi
     pm2 start ~/MagicMirror/installers/pm2_MagicMirror.json
     pm2 save
 fi
