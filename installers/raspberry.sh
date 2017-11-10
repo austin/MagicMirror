@@ -163,7 +163,7 @@ read -p "Do you want to rotate the screen (y/n)?" choice
 if [[ $choice =~ ^[Yy]$ ]]; then
     sudo cp /boot/config.txt /boot/config.txt.bak
 
-    echo "" | sudo tee -a /boot/config.txt > dev/null
+    echo "" | sudo tee -a /boot/config.txt > /dev/null
     echo "display_rotate=1" | sudo tee -a /boot/config.txt > /dev/null
     echo "avoid_warnings=1" | sudo tee -a /boot/config.txt > /dev/null
 fi
