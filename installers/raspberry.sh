@@ -153,7 +153,7 @@ read -p "Do you want use pm2 for auto starting of your MagicMirror (y/n)?" choic
 if [[ $choice =~ ^[Yy]$ ]]; then
     sudo npm install -g pm2
     #sudo su -c "env PATH=$PATH:/usr/bin pm2 startup linux -u pi --hp /home/pi"
-    sudo su -c "env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi
+    sudo su -c "env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi"
     pm2 start ~/MagicMirror/installers/pm2_MagicMirror.json
     pm2 save
 fi
